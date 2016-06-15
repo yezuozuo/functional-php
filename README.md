@@ -1,0 +1,2 @@
+# functional_by_php
+基于PHP的一个提供函数式编程支持的公共工具类
