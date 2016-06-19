@@ -215,4 +215,77 @@ zoco_print($result);
 $names  = array('moe', 'larry', 'curly');
 $ages   = array(30, 40, 50);
 $leaders= array(true);
-$stooges= array(array('moe', 30, true), array('larry', 40, null), array('curly', 50, null));
+// array(array('moe', 30, true), array('larry', 40, null), array('curly', 50, null));
+$result = __::zip($names, $ages, $leaders);
+zoco_print($result);
+
+// 1
+$numbers = array(1,2,3);
+$result = __::indexOf($numbers, 2);
+zoco_print($result);
+
+// -1
+$result = __::indexOf(null, 2);
+zoco_print($result);
+
+// 1
+$func = function() { return __::indexOf(func_get_args(), 2); };
+$result = $func(1,2,3);
+zoco_print($result);
+
+// 'b'
+$result = __(array('a'=>5,'b'=>10,'c'=>15))->indexOf(10);
+zoco_print($result);
+
+// 1
+$result = __::indexOf('foobar', 'o');
+zoco_print($result);
+
+// 5
+$numbers = array(1, 0, 1, 0, 0, 1, 0, 0, 0);
+$result = __::lastIndexOf($numbers, 1);
+zoco_print($result);
+
+// 8
+$result = __::lastIndexOf($numbers, 0);
+zoco_print($result);
+
+// []
+$result = __::range(0);
+zoco_print($result);
+
+// [0,1,2,3]
+$result = __::range(4);
+zoco_print($result);
+
+// [5,6,7]
+$result = __::range(5,8);
+zoco_print($result);
+
+// []
+$result = __::range(8,5);
+zoco_print($result);
+
+// [3,6,9]
+$result = __::range(3, 10, 3);
+zoco_print($result);
+
+// [3]
+$result = __::range(3, 10, 15);
+zoco_print($result);
+
+// [12,10,8]
+$result = __::range(12, 7, -2);
+zoco_print($result);
+
+// [0,-1,-2,-3,-4,-5,-6,-7,-8,-9]
+$result = __::range(0, -10, -1);
+zoco_print($result);
+
+// [10,11,12]
+$result = __(10)->range(13);
+zoco_print($result);
+
+// [3,6,9]
+$result = __(3)->range(10, 3);
+zoco_print($result);
