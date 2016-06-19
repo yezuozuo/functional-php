@@ -628,12 +628,11 @@ class __ {
      * uniq alias: unique
      *
      * @param null $collection
-     * @param null $is_sorted
      * @param null $iterator
      * @return __
      */
-    public function unique($collection = null, $is_sorted = null, $iterator = null) {
-        return self::uniq($collection, $is_sorted, $iterator);
+    public function unique($collection = null, $iterator = null) {
+        return self::uniq($collection, $iterator);
     }
 
     /**
@@ -642,8 +641,8 @@ class __ {
      * @param null $iterator
      * @return __
      */
-    public function uniq($collection = null, $is_sorted = null, $iterator = null) {
-        list($collection, $is_sorted, $iterator) = self::_wrapArgs(func_get_args(), 3);
+    public function uniq($collection = null, $iterator = null) {
+        list($collection, $iterator) = self::_wrapArgs(func_get_args(), 3);
 
         $collection = self::_collection($collection);
 
@@ -661,7 +660,12 @@ class __ {
             }
         }
 
-        return self::_wrap($return);
+        if(is_array($return) && is_object($return[0])) {
+            return self::_wrap($return);
+        } else {
+            return self::_wrap($calculated);
+        }
+
     }
 
     /**

@@ -172,6 +172,47 @@ $list = array(
     (object) array('name'=>'larry'),
     (object) array('name'=>'curly')
 );
+// ['moe','curly','larry']
 $iterator = function($value) { return $value->name; };
-$result = __::map(__::uniq($list, false, $iterator), $iterator);
+$result = __::map(__::uniq($list, $iterator), $iterator);
 zoco_print($result);
+
+// [1,2,3,4]
+$iterator = function($value) { return $value + 1; };
+$list = array(1, 2, 2, 3, 4, 4);
+$result = __::uniq($list, $iterator);
+zoco_print($result);
+
+// ['moe']
+$stooges = array('moe', 'curly', 'larry');
+$leaders = array('moe', 'groucho');
+$result = __::intersection($stooges, $leaders);
+zoco_print($result);
+
+// ['moe']
+$result = __($stooges)->intersection($leaders);
+zoco_print($result);
+
+// [2,3]
+$arr1 = array(0, 1, 2, 3);
+$arr2 = array(1, 2, 3, 4);
+$arr3 = array(2, 3, 4, 5);
+$result = __::intersection($arr1, $arr2, $arr3);
+zoco_print($result);
+
+// [1,2,3,30,40]
+$result = __::union(array(1, 2, 3), array(2, 30, 1), array(1, 40));
+zoco_print($result);
+
+// [1,3]
+$result = __::difference(array(1, 2, 3), array(2, 30, 40));
+zoco_print($result);
+
+// [3,4]
+$result = __::difference(array(1, 2, 3, 4), array(2, 30, 40), array(1, 11, 111));
+zoco_print($result);
+
+$names  = array('moe', 'larry', 'curly');
+$ages   = array(30, 40, 50);
+$leaders= array(true);
+$stooges= array(array('moe', 30, true), array('larry', 40, null), array('curly', 50, null));
