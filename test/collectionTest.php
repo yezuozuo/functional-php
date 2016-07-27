@@ -83,3 +83,6 @@ zoco_print($result);
 $result = __::find(array(1, 3, 5), $iterator);
 zoco_print($result);
 
+// false
+$result = __(array(1,3,5))->find($iterator);
+zoco_print($result);
